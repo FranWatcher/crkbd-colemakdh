@@ -61,15 +61,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PERMISSIVE_HOLD
 
 // Para probar el home row mods
-// #define IGNORE_MOD_TAP_INTERRUPT
-// #define TAPPING_FORCE_HOLD
-// #define TAPPING_FORCE_HOLD_PER_KEY
+#define IGNORE_MOD_TAP_INTERRUPT
+//#define TAPPING_FORCE_HOLD
+//#define TAPPING_FORCE_HOLD_PER_KEY
+#define PERMISSIVE_HOLD_PER_KEY
+#define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
+
 
 #define COMBO_COUNT 10
 
 #define COMBO_TERM 40
 
-#define ONESHOT_TAP_TOGGLE 3  /* Tapping this number of times holds the key until tapped once again. */
+#define ONESHOT_TAP_TOGGLE 4  /* Tapping this number of times holds the key until tapped once again. */
 #define ONESHOT_TIMEOUT 2000  /* Time (in ms) before the one shot key is released */
 
 #define UNICODE_SELECTED_MODES UC_WINC

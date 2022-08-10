@@ -49,7 +49,7 @@ enum custom_keycodes {
 };
 
 enum combos {
-    NE_ESC,
+    HCOMA_ESC,
 
     PH_BSLASH,
     DL_SLASH,
@@ -57,16 +57,16 @@ enum combos {
     PB_LBRC,
     JL_RBRC,
 
-    TG_LPRN,
-    MN_RPRN,
+    PG_LPRN,
+    ML_RPRN,
 
     DV_LCBR,
     KH_RCBR,
 
-    TN_RCBR
+    GM_RCBR
 };
 
-const uint16_t PROGMEM ne_combo[] = {ES_N, ES_E, COMBO_END};
+const uint16_t PROGMEM hcoma_combo[] = {ES_H, ES_COMM, COMBO_END};
 
 const uint16_t PROGMEM ph_combo[] = {ES_P, ES_H, COMBO_END};
 const uint16_t PROGMEM dl_combo[] = {ES_D, ES_L, COMBO_END};
@@ -74,16 +74,16 @@ const uint16_t PROGMEM dl_combo[] = {ES_D, ES_L, COMBO_END};
 const uint16_t PROGMEM pb_combo[] = {ES_P, ES_B, COMBO_END};
 const uint16_t PROGMEM jl_combo[] = {ES_J, ES_L, COMBO_END};
 
-const uint16_t PROGMEM tg_combo[] = {ES_T, ES_G, COMBO_END};
-const uint16_t PROGMEM mn_combo[] = {ES_M, ES_N, COMBO_END};
+const uint16_t PROGMEM pg_combo[] = {ES_P, ES_G, COMBO_END};
+const uint16_t PROGMEM ml_combo[] = {ES_M, ES_L, COMBO_END};
 
 const uint16_t PROGMEM dv_combo[] = {ES_D, ES_V, COMBO_END};
 const uint16_t PROGMEM kh_combo[] = {ES_K, ES_H, COMBO_END};
 
-const uint16_t PROGMEM tn_combo[] = {ES_T, ES_N, COMBO_END};
+const uint16_t PROGMEM gm_combo[] = {ES_G, ES_M, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
-    [NE_ESC] = COMBO(ne_combo, KC_ESC),
+    [HCOMA_ESC] = COMBO(hcoma_combo, KC_ESC),
 
     [PH_BSLASH] = COMBO(ph_combo, ES_BSLS),
     [DL_SLASH] = COMBO(dl_combo, ES_SLSH),
@@ -91,13 +91,13 @@ combo_t key_combos[COMBO_COUNT] = {
     [PB_LBRC] = COMBO(pb_combo, ES_LBRC),
     [JL_RBRC] = COMBO(jl_combo, ES_RBRC),
 
-    [TG_LPRN] = COMBO(tg_combo, ES_LPRN),
-    [MN_RPRN] = COMBO(mn_combo, ES_RPRN),
+    [PG_LPRN] = COMBO(pg_combo, ES_LPRN),
+    [ML_RPRN] = COMBO(ml_combo, ES_RPRN),
 
     [DV_LCBR] = COMBO(dv_combo, ES_LCBR),
     [KH_RCBR] = COMBO(kh_combo, ES_RCBR),
 
-    [TN_RCBR] = COMBO(tn_combo, ES_PIPE),
+    [GM_RCBR] = COMBO(gm_combo, ES_PIPE),
 };
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
@@ -120,6 +120,80 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
   // }
 //}
 
+// Para HOME ROW: PERMISSIVE HOLD PER KEY (only for 'F', 'J' and shift keys)
+/* It allows to register a shifted key even if all the operation
+   has been produced within the tapping_term */
+bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case HOME_A:
+            // Immediately select the hold action when another key is tapped.
+            return true;
+ 
+        case HOME_R:
+            // Immediately select the hold action when another key is tapped.
+            return true;
+ 
+        case HOME_S:
+            // Immediately select the hold action when another key is tapped.
+            return true;
+ 
+        case HOME_T:
+            // Immediately select the hold action when another key is tapped.
+            return true;
+ 
+        case HOME_N:
+            // Immediately select the hold action when another key is tapped.
+            return true;
+ 
+        case HOME_E:
+            // Immediately select the hold action when another key is tapped.
+            return true;
+ 
+        case HOME_I:
+            // Immediately select the hold action when another key is tapped.
+            return true;
+ 
+        case HOME_O:
+            // Immediately select the hold action when another key is tapped.
+            return true;
+ 
+        case KC_LSFT:
+            // Immediately select the hold action when another key is tapped.
+            return true;
+ 
+        case KC_RSFT:
+            // Immediately select the hold action when another key is tapped.
+            return true;
+ 
+        default:
+            // Do not select the hold action when another key is tapped.
+            return false;
+    }
+}
+ 
+ 
+ 
+// HOLD ON OTHER KEY PRESS:
+/* If you press a dual-role key, press another key, and then release the dual-role key,
+   (all within the tapping term), by default the dual-role key will perform its tap action.
+   However, if HOLD_ON_OTHER_KEY_PRESS is enabled, the dual-role key will perform its hold
+   action instead */
+bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        // case LSFT_SFEN:
+            // Immediately select the hold action when another key is pressed.
+           // return true;
+ 
+        /*case MO(1):
+            // Immediately select the hold action when another key is pressed.
+            return true; */
+ 
+        default:
+            // Do not select the hold action when another key is pressed.
+            return false;
+    }
+}
+
 void matrix_init_user(void) {                 
   set_unicode_input_mode(UC_WINC);
 };
@@ -129,7 +203,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_TAB,    ES_Q,    ES_W,    ES_F,    ES_P,    ES_B,                         ES_J,    ES_L,    ES_U,    ES_Y, ES_NTIL, ES_QUOT, 
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
- OSM(MOD_LCTL),   ES_A, ES_R, ES_S, ES_T,    ES_G,                         ES_M,    ES_N,  ES_E,  ES_I, ES_O, ES_ACUT, 
+ OSM(MOD_LCTL),   HOME_A, HOME_R, HOME_S, HOME_T,    ES_G,                         ES_M,    HOME_N,  HOME_E,  HOME_I, HOME_O, ES_ACUT, 
+ // OSM(MOD_LCTL),   ES_A, ES_R, ES_S, ES_T,    ES_G,                         ES_M,    ES_N,  ES_E,  ES_I, ES_O, ES_ACUT, 
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
  OSM(MOD_LSFT),   ES_Z,    ES_X,    ES_C,    ES_D,    ES_V,                         ES_K,    ES_H, ES_COMM,  ES_DOT, ES_MINS, KC_RBRC, 
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -253,14 +328,14 @@ void oled_render_layer_state(void) {
 }
 
 
-void oled_render_logo(void) {
-    static const char PROGMEM crkbd_logo[] = {
-        0x80, 0x81, 0x82, 0x83, 0x84, 0x85, 0x86, 0x87, 0x88, 0x89, 0x8a, 0x8b, 0x8c, 0x8d, 0x8e, 0x8f, 0x90, 0x91, 0x92, 0x93, 0x94,
-        0xa0, 0xa1, 0xa2, 0xa3, 0xa4, 0xa5, 0xa6, 0xa7, 0xa8, 0xa9, 0xaa, 0xab, 0xac, 0xad, 0xae, 0xaf, 0xb0, 0xb1, 0xb2, 0xb3, 0xb4,
-        0xc0, 0xc1, 0xc2, 0xc3, 0xc4, 0xc5, 0xc6, 0xc7, 0xc8, 0xc9, 0xca, 0xcb, 0xcc, 0xcd, 0xce, 0xcf, 0xd0, 0xd1, 0xd2, 0xd3, 0xd4,
-        0};
-    oled_write_P(crkbd_logo, false);
-}
+//void oled_render_logo(void) {
+//    static const char PROGMEM crkbd_logo[] = {
+//        0x80, 0x81, 0x82, 0x83, 0x84, 0x85, 0x86, 0x87, 0x88, 0x89, 0x8a, 0x8b, 0x8c, 0x8d, 0x8e, 0x8f, 0x90, 0x91, 0x92, 0x93, 0x94,
+//        0xa0, 0xa1, 0xa2, 0xa3, 0xa4, 0xa5, 0xa6, 0xa7, 0xa8, 0xa9, 0xaa, 0xab, 0xac, 0xad, 0xae, 0xaf, 0xb0, 0xb1, 0xb2, 0xb3, 0xb4,
+//        0xc0, 0xc1, 0xc2, 0xc3, 0xc4, 0xc5, 0xc6, 0xc7, 0xc8, 0xc9, 0xca, 0xcb, 0xcc, 0xcd, 0xce, 0xcf, 0xd0, 0xd1, 0xd2, 0xd3, 0xd4,
+//        0};
+//    oled_write_P(crkbd_logo, false);
+//}
 
 void oled_show_locks(void) {
   led_t led_state = host_keyboard_led_state();
@@ -275,8 +350,8 @@ bool oled_task_user(void) {
         oled_show_locks();
         // render_status();
     } else {
-        oled_render_logo();
-        oled_scroll_left();
+       // oled_render_logo();
+       // oled_scroll_left();
     }
     return false;
 }
