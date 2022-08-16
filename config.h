@@ -72,7 +72,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define COMBO_TERM 40
 
-#define ONESHOT_TAP_TOGGLE 4  /* Tapping this number of times holds the key until tapped once again. */
-#define ONESHOT_TIMEOUT 2000  /* Time (in ms) before the one shot key is released */
+// opciones para ONE SHOT MOD
+// #define ONESHOT_TAP_TOGGLE 4  /* Tapping this number of times holds the key until tapped once again. */
+// #define ONESHOT_TIMEOUT 2000  /* Time (in ms) before the one shot key is released */
 
 #define UNICODE_SELECTED_MODES UC_WINC

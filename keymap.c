@@ -23,9 +23,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 extern uint8_t is_master;
 
 #define _COLEMAKDH 0
-#define _LOWER 1
-#define _RAISE 2
-#define _ADJUST 3
+#define _NUMEROS 1
+#define _FUNCIONES 2
+#define _SIMBOLOS 3
+#define _NAVEGA 4
 
 
 // Left-hand home row mods
@@ -42,15 +43,14 @@ extern uint8_t is_master;
 
 enum custom_keycodes {
     COLEMAKDH = SAFE_RANGE,
-    LOWER,
-    RAISE,
-    ADJUST,
+    NUMEROS,
+    FUNCIONES,
+    SIMBOLOS,
+    NAVEGA,
     BACKLIST
 };
 
 enum combos {
-    HCOMA_ESC,
-
     PH_BSLASH,
     DL_SLASH,
     
@@ -63,10 +63,10 @@ enum combos {
     DV_LCBR,
     KH_RCBR,
 
-    GM_RCBR
-};
+    GM_RCBR,
 
-const uint16_t PROGMEM hcoma_combo[] = {ES_H, ES_COMM, COMBO_END};
+    FP_NAVEGA
+};
 
 const uint16_t PROGMEM ph_combo[] = {ES_P, ES_H, COMBO_END};
 const uint16_t PROGMEM dl_combo[] = {ES_D, ES_L, COMBO_END};
@@ -82,9 +82,10 @@ const uint16_t PROGMEM kh_combo[] = {ES_K, ES_H, COMBO_END};
 
 const uint16_t PROGMEM gm_combo[] = {ES_G, ES_M, COMBO_END};
 
-combo_t key_combos[COMBO_COUNT] = {
-    [HCOMA_ESC] = COMBO(hcoma_combo, KC_ESC),
+const uint16_t PROGMEM fp_combo[] = {ES_F, ES_P, COMBO_END};
 
+combo_t key_combos[COMBO_COUNT] = {
+ 
     [PH_BSLASH] = COMBO(ph_combo, ES_BSLS),
     [DL_SLASH] = COMBO(dl_combo, ES_SLSH),
 
@@ -98,13 +99,16 @@ combo_t key_combos[COMBO_COUNT] = {
     [KH_RCBR] = COMBO(kh_combo, ES_RCBR),
 
     [GM_RCBR] = COMBO(gm_combo, ES_PIPE),
+
+    [FP_NAVEGA] = COMBO(fp_combo, TG(_NAVEGA))
+
 };
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch(keycode) {
-        case LT(_RAISE, KC_BSPC):
-            return TAPPING_TERM_BSPC;
-        case LT(_LOWER, KC_TAB):
+        case LT(_FUNCIONES, KC_BSPC):
+        case LT(_NUMEROS, KC_TAB):
+      //  case LT(_NAVEGA, KC_SPC):
             return TAPPING_TERM_BSPC;
         default:
             return TAPPING_TERM;
@@ -201,53 +205,78 @@ void matrix_init_user(void) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_COLEMAKDH] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB,    ES_Q,    ES_W,    ES_F,    ES_P,    ES_B,                         ES_J,    ES_L,    ES_U,    ES_Y, ES_NTIL, ES_QUOT, 
+      ES_MORD,    ES_Q,    ES_W,    ES_F,    ES_P,    ES_B,                        ES_J,    ES_L,    ES_U,    ES_Y, ES_NTIL, ES_QUOT, 
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
- OSM(MOD_LCTL),   HOME_A, HOME_R, HOME_S, HOME_T,    ES_G,                         ES_M,    HOME_N,  HOME_E,  HOME_I, HOME_O, ES_ACUT, 
- // OSM(MOD_LCTL),   ES_A, ES_R, ES_S, ES_T,    ES_G,                         ES_M,    ES_N,  ES_E,  ES_I, ES_O, ES_ACUT, 
+      KC_CAPS,  HOME_A,  HOME_R,  HOME_S,  HOME_T,    ES_G,                        ES_M,    HOME_N,  HOME_E,  HOME_I, HOME_O, ES_ACUT, 
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
- OSM(MOD_LSFT),   ES_Z,    ES_X,    ES_C,    ES_D,    ES_V,                         ES_K,    ES_H, ES_COMM,  ES_DOT, ES_MINS, KC_RBRC, 
+      ES_LABK,    ES_Z,    ES_X,    ES_C,    ES_D,    ES_V,                        ES_K,    ES_H, ES_COMM,  ES_DOT, ES_MINS, KC_RBRC, 
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-        OSM(MOD_LALT),   GUI_T(KC_ENT),  LT(_LOWER, KC_TAB),                   LT(_RAISE,KC_BSPC),  KC_SPC, OSM(MOD_RALT) 
+                KC_ESC, LT(_FUNCIONES, KC_ENT), LT(_NUMEROS, KC_TAB),   LT(_SIMBOLOS, KC_BSPC), LT(_NAVEGA, KC_SPC), KC_DEL  
                                       //`--------------------------'  `--------------------------'
   ),
 
-  [_LOWER] = LAYOUT_split_3x6_3(
+  [_NUMEROS] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      ES_MORD, ES_EXLM, ES_DQUO, ES_BULT,  ES_DLR, ES_PERC,                      ES_AMPR, ES_SLSH, ES_LPRN, ES_RPRN,  ES_EQL, ES_QUES,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      ES_LBRC,    ES_7,    ES_8,    ES_9, ES_SLSH, ES_RBRC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______,    ES_1,    ES_2,    ES_3,    ES_4,    ES_5,                         ES_6,    ES_7,    ES_8,    ES_9,    ES_0, ES_IQUE,
+      XXXXXXX, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX,                      ES_LPRN,    ES_4,    ES_5,    ES_6, ES_BSLS, ES_RPRN,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_CAPS, ES_IEXL, ES_LABK, ES_RABK, ES_LBRC, ES_RBRC,                      ES_LCBR, ES_RCBR, ES_BSLS, ES_PIPE, ES_CIRC, ES_GRV,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      ES_LCBR,    ES_1,    ES_2,    ES_3,    ES_0, ES_RCBR,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______, _______,  LOWER,     ADJUST, _______, _______
+                                          XXXXXXX, XXXXXXX,  NUMEROS,     KC_BSPC, KC_SPC, KC_DEL
                                       //`--------------------------'  `--------------------------'
   ),
 
-  [_RAISE] = LAYOUT_split_3x6_3(
+  [_FUNCIONES] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      KC_ESC ,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                        KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_DEL,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                  TG(_NAVEGA),   KC_F7,   KC_F8,   KC_F9,  KC_F12, KC_F15,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______,LCTL(KC_Y),LCA(KC_LEFT),LCA(KC_RIGHT),LALT(KC_LEFT),LALT(KC_RIGHT), KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT,  KC_APP,  KC_F11,
+      XXXXXXX, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX,                      XXXXXXX,   KC_F4,   KC_F5,   KC_F6,  KC_F11, KC_F14,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______,LCTL(KC_Z),LCTL(KC_X),LCTL(KC_C),KC_INS,LCTL(KC_V),                KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_PSCR,  KC_F12,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX,   KC_F1,   KC_F2,   KC_F3,  KC_F10, KC_F13,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          _______, _______,  ADJUST,     RAISE, _______, _______
+                                       XXXXXXX, FUNCIONES, XXXXXXX,     KC_BSPC, KC_SPC, KC_DEL
                                       //`--------------------------'  `--------------------------'
   ),
 
-  [_ADJUST] = LAYOUT_split_3x6_3(
+  [_SIMBOLOS] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+      ES_DLR, ES_PERC, ES_DQUO, ES_IEXL, ES_SLSH, ES_IQUE,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, ES_IQUE,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      ES_CIRC, ES_TILD,   ES_AT, ES_HASH,  ES_PIPE,  ES_EQL,                      XXXXXXX, KC_RSFT, KC_RCTL, KC_LALT, KC_RGUI, ES_GRV,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      ES_EURO, ES_AMPR, ES_BULT, ES_EXLM, ES_BSLS, ES_QUES,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, ES_NOT,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          KC_ESC, KC_ENT,  KC_TAB,     SIMBOLOS, XXXXXXX, XXXXXXX
+                                      //`--------------------------'  `--------------------------'
+  ),
+
+/*
+  [_SIMBOLOS] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, KC_VOLU, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX,   ES_AT, ES_HASH, ES_TILD, XXXXXXX,                       ES_NOT, RCS(KC_Z), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX,   ES_AT, ES_HASH, ES_TILD, XXXXXXX,                      XXXXXXX, KC_RSFT, KC_RCTL, KC_LALT, KC_RGUI, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, KC_VOLD, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          XXXXXXX, XXXXXXX,  ADJUST,     ADJUST, XXXXXXX, XXXXXXX
+                                          KC_ESC, KC_ENT,  KC_TAB,     SIMBOLOS, XXXXXXX, XXXXXXX
+                                      //`--------------------------'  `--------------------------'
+  ),
+*/
+
+  [_NAVEGA] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+  RCS(KC_Z),   KC_HOME, KC_PGDN, KC_PGUP,  KC_END, KC_PSCR,                  TG(_NAVEGA), KC_HOME, KC_PGDN, KC_PGUP,  KC_END, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+  LCA(KC_LEFT),LCTL(KC_F),KC_LALT, KC_LCTL, KC_LSFT,LCA(KC_RIGHT),               XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,  KC_RIGHT, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+  LCTL(KC_Y),LCTL(KC_Z),LCTL(KC_X),LCTL(KC_C),KC_BSPC,LCTL(KC_V),                XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                             KC_ESC, KC_ENT, KC_TAB,   XXXXXXX, NAVEGA, XXXXXXX
                                       //`--------------------------'  `--------------------------'
   )
-  
+
 };
 
 void persistent_default_layer_set(uint16_t default_layer) {
@@ -262,29 +291,32 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         persistent_default_layer_set(1UL<<_COLEMAKDH);
       }
       return false;
-    case LOWER:
+    case NUMEROS:
       if (record->event.pressed) {
-        layer_on(_LOWER);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
+        layer_on(_NUMEROS);
       } else {
-        layer_off(_LOWER);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
+        layer_off(_NUMEROS);
       }
       return false;
-    case RAISE:
+    case FUNCIONES:
       if (record->event.pressed) {
-        layer_on(_RAISE);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
+        layer_on(_FUNCIONES);
       } else {
-        layer_off(_RAISE);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
+        layer_off(_FUNCIONES);
       }
       return false;
-    case ADJUST:
+    case SIMBOLOS:
         if (record->event.pressed) {
-          layer_on(_ADJUST);
+          layer_on(_SIMBOLOS);
         } else {
-          layer_off(_ADJUST);
+          layer_off(_SIMBOLOS);
+        }
+        return false;
+    case NAVEGA:
+        if (record->event.pressed) {
+          layer_on(_NAVEGA);
+        } else {
+          layer_off(_NAVEGA);
         }
         return false;
     default:
@@ -302,27 +334,28 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 }
 
 #define L_BASE 0
-#define L_LOWER 2
-#define L_RAISE 4
-#define L_ADJUST 8
+#define L_NUMEROS 2
+#define L_FUNCIONES 4
+#define L_SIMBOLOS 8
+#define L_NAVEGA 16
 
 void oled_render_layer_state(void) {
     oled_write_P(PSTR("Layer: "), false);
-    switch (layer_state) {
-        case L_BASE:
+    switch (get_highest_layer(layer_state)) {
+        case _COLEMAKDH:
             oled_write_ln_P(PSTR("ColemakDH"), false);
             break;
-        case L_LOWER:
-            oled_write_ln_P(PSTR("Lower"), false);
+        case _NUMEROS:
+            oled_write_ln_P(PSTR("Numeros"), false);
             break;
-        case L_RAISE:
-            oled_write_ln_P(PSTR("Raise"), false);
+        case _FUNCIONES:
+            oled_write_ln_P(PSTR("Funciones"), false);
             break;
-        case L_ADJUST:
-        case L_ADJUST|L_LOWER:
-        case L_ADJUST|L_RAISE:
-        case L_ADJUST|L_LOWER|L_RAISE:
-            oled_write_ln_P(PSTR("Adjust"), false);
+        case _NAVEGA:
+            oled_write_ln_P(PSTR("Navega"), false);
+            break;
+        case _SIMBOLOS:
+            oled_write_ln_P(PSTR("Simbolos"), false);
             break;
     }
 }

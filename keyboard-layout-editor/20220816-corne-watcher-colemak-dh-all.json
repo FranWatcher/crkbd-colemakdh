@@ -1,0 +1,299 @@
+[
+  {
+    "name": "Corne Watcher Colemak-DH (All)",
+    "author": "https://github.com/FranWatcher",
+    "plate": false,
+    "keyboard-layout-editor": "http://www.keyboard-layout-editor.com/#/gists/adfa7c3cd8f0c6d3a7b9155c6eab1748#file-corne-crkbd_c0psrul3-default-json",
+    "qmk-config": "https://config.qmk.fm/#/crkbd/rev1/LAYOUT"
+  },
+  [
+    {
+      "x": 3,
+      "t": "#000000\n#ff0000\n\n\n\n\n\n#ffaa00"
+    },
+    "F\n¡\n\n\n\n\n\nPgUp",
+    {
+      "x": 2.25,
+      "t": "#000000",
+      "w": 2.5,
+      "h": 3,
+      "d": true
+    },
+    "<i>Combos:</I><br><br>GM → |<br>  PB → [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ] ← JL <br> PG → ( &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ) ← ML<br> DV → { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } ← KH<br>  PH → \\ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / ← DL<br> <br>FP → Navega",
+    {
+      "x": 2.25,
+      "t": "#000000\n#009900\n#ffaa00\n#0000ff\n\n\n\n#ffaa00"
+    },
+    "U\n8\nPg\nF8\n\n\n\nDn"
+  ],
+  [
+    {
+      "y": -0.9,
+      "x": 2,
+      "t": "#000000\n#ff0000\n\n\n\n\n\n#ffaa00"
+    },
+    "W\n\"\n\n\n\n\n\nPgDn"
+  ],
+  [
+    {
+      "y": -1,
+      "x": 4
+    },
+    "P\n/\n\n\n\n\n\nFin",
+    {
+      "x": 5,
+      "t": "#000000\n#009900\n\n#0000ff\n\n\n\n#ffaa00"
+    },
+    "L\n7\n\nF7\n\n\n\nIni",
+    {
+      "x": 1,
+      "t": "#000000\n#009900\n#ffaa00\n#0000ff\n\n\n\n#ffaa00"
+    },
+    "Y\n9\nPg\nF9\n\n\n\nUp"
+  ],
+  [
+    {
+      "y": -0.9,
+      "x": 5,
+      "t": "#000000\n#ff0000\n#ffaa00\n\n\n\n\n#ffaa00"
+    },
+    "B\n¿\nPrnt\n\n\n\n\nScrn",
+    {
+      "x": 3,
+      "t": "#000000\n#009900\n\n#0000ff\n\n\n\n#ffaa00"
+    },
+    "J\n[\n\nNav\n\n\n\nNav"
+  ],
+  [
+    {
+      "y": -0.9000000000000001,
+      "x": 14,
+      "t": "#000000\n#009900\n\n#0000ff\n\n\n#ff0000"
+    },
+    "'\n]\n?\nF15\n\n\n¿"
+  ],
+  [
+    {
+      "y": -0.9999999999999999,
+      "t": "#000000\n#ff0000"
+    },
+    "º\n$\nª\n\n\n\n\n📋",
+    {
+      "t": "#000000\n#ff0000\n\n\n\n\n\n#ffaa00"
+    },
+    "Q\n%\n\n\n\n\n\nIni",
+    {
+      "x": 11,
+      "t": "#000000\n#009900\n\n#0000ff\n\n\n\n#ffaa00"
+    },
+    "Ñ\n/\n\nF12\n\n\n\nFin"
+  ],
+  [
+    {
+      "y": -0.30000000000000004,
+      "x": 3,
+      "t": "#000000\n#ff0000\n\n\n\n\n\n#ffaa00"
+    },
+    "S\n#\n\n\nControl\n\n\nCtrl",
+    {
+      "x": 7,
+      "t": "#000000\n#009900\n\n#0000ff\n\n\n\n#ffaa00"
+    },
+    "E\n5\n\nF5\nControl\n\n\n▼"
+  ],
+  [
+    {
+      "y": -0.8999999999999999,
+      "x": 2,
+      "t": "#000000\n#ff0000\n\n\n\n\n\n#ffaa00"
+    },
+    "R\n@\n\n\nAlt\n\n\nAlt",
+    {
+      "x": 1
+    },
+    "T\n|\n\n\nShift\n\n\nShift",
+    {
+      "x": 5,
+      "t": "#000000\n#009900\n\n#0000ff\n\n\n\n#ffaa00"
+    },
+    "N\n4\n\nF4\nShift\n\n\n◀",
+    {
+      "x": 1
+    },
+    "I\n6\n\nF6\nAlt\n\n\n▲"
+  ],
+  [
+    {
+      "y": -0.8999999999999999,
+      "x": 5,
+      "t": "#000000\n#ff0000\n\n\n\n\n\n#ffaa00"
+    },
+    "G\n=\n\n\n\n\n\nfrwrd",
+    {
+      "x": 3,
+      "t": "#000000\n#009900"
+    },
+    "M\n("
+  ],
+  [
+    {
+      "y": -0.9000000000000001,
+      "x": 14,
+      "t": "#000000\n#009900\n\n#0000ff\n\n\n#ff0000"
+    },
+    "´\n)\n¨\nF14\n\n\n`"
+  ],
+  [
+    {
+      "y": -0.9999999999999996,
+      "t": "#000000\n#ff0000\n\n\n\n\n\n#ffaa00"
+    },
+    "Caps\n^\n\n\n\n\n\nback",
+    {
+      "t": "#000000\n#ff0000"
+    },
+    "A\n~\n\n\nSuper\n\n\n🔍",
+    {
+      "x": 11,
+      "t": "#000000\n#009900\n\n#0000ff\n\n\n\n#ffaa00"
+    },
+    "O\n\\\n\nF11\nSuper\n\n\n▶"
+  ],
+  [
+    {
+      "y": -0.2999999999999998,
+      "x": 3,
+      "t": "#000000\n#ff0000\n\n\n\n\n\n#ffaa00"
+    },
+    "C\n!\n\n\n\n\n\ncopy",
+    {
+      "x": 7,
+      "t": "#000000\n#009900\n\n#0000ff"
+    },
+    ",\n2\n;\nF2"
+  ],
+  [
+    {
+      "y": -0.8999999999999999,
+      "x": 2,
+      "t": "#000000\n#ff0000\n\n\n\n\n\n#ffaa00"
+    },
+    "X\n·\n\n\n\n\n\ncut",
+    {
+      "x": 1
+    },
+    "D\n\\\n\n\n\n\n\nbksp",
+    {
+      "x": 5,
+      "t": "#000000\n#009900\n\n#0000ff"
+    },
+    "H\n1\n\nF1",
+    {
+      "x": 1
+    },
+    ".\n3\n:\nF3"
+  ],
+  [
+    {
+      "y": -0.8999999999999999,
+      "x": 5,
+      "t": "#000000\n#ff0000\n\n\n\n\n\n#ffaa00"
+    },
+    "V\n?\n\n\n\n\n\npaste",
+    {
+      "x": 3,
+      "t": "#000000\n#009900"
+    },
+    "K\n{"
+  ],
+  [
+    {
+      "y": -0.8999999999999999,
+      "t": "#000000\n#ff0000\n\n\n\n\n\n#ffaa00"
+    },
+    "<\n€\n>\n\n\n\n\nredo",
+    "Z\n&\n\n\n\n\n\nundo",
+    {
+      "x": 11,
+      "t": "#000000\n#009900\n\n#0000ff"
+    },
+    "-\n0\n_\nF10",
+    {
+      "t": "#000000\n#009900\n\n#0000ff\n\n\n#ff0000"
+    },
+    "+\n}\n*\nF13\n\n\n¬"
+  ],
+  [
+    {
+      "y": -0.20000000000000018,
+      "x": 3.5,
+      "t": "#000000"
+    },
+    "Esc",
+    {
+      "x": 6
+    },
+    "Supr"
+  ],
+  [
+    {
+      "y": -0.10000000000000053,
+      "w": 12,
+      "d": true
+    },
+    "Watcher\n<tt>https://github.com/FranWatcher\n\n\n\n\n<i>Fran Watcher<i>",
+    {
+      "x": -1,
+      "f": 4,
+      "w": 4,
+      "d": true
+    },
+    "\n\nTodas las Capas"
+  ],
+  [
+    {
+      "r": 15,
+      "rx": 4.5,
+      "ry": 4.1,
+      "y": -1,
+      "t": "#000000\n\n\n\n#0000ff",
+      "a": 0,
+      "f": 3
+    },
+    "Enter\n\n\n\nFunciones"
+  ],
+  [
+    {
+      "r": 30,
+      "rx": 5.4,
+      "ry": 4.3,
+      "y": -1.5,
+      "x": 0.09999999999999964,
+      "t": "#000000\n\n\n\n#009900",
+      "h": 1.5
+    },
+    "Tab\n\n\n\nNumeros"
+  ],
+  [
+    {
+      "r": -30,
+      "rx": 9.6,
+      "y": -1.5,
+      "x": -1.0999999999999996,
+      "t": "#000000\n\n\n\n#ff0000",
+      "h": 1.5
+    },
+    "Bksp\n\n\n\nSimbolos"
+  ],
+  [
+    {
+      "r": -15,
+      "rx": 10.5,
+      "ry": 4.1,
+      "y": -1,
+      "x": -1,
+      "t": "#000000\n\n\n\n#ffff00"
+    },
+    "Space\n\n\n\nNavega"
+  ]
+]
