@@ -27,6 +27,7 @@ extern uint8_t is_master;
 #define _FUNCIONES 2
 #define _SIMBOLOS 3
 #define _NAVEGA 4
+#define _MULTIMEDIA 5
 
 
 // Left-hand home row mods
@@ -47,6 +48,7 @@ enum custom_keycodes {
     FUNCIONES,
     SIMBOLOS,
     NAVEGA,
+    MULTIMEDIA,
     BACKLIST
 };
 
@@ -108,6 +110,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch(keycode) {
         case LT(_FUNCIONES, KC_BSPC):
         case LT(_NUMEROS, KC_TAB):
+        case LT(_MULTIMEDIA, KC_DEL):
       //  case LT(_NAVEGA, KC_SPC):
             return TAPPING_TERM_BSPC;
         default:
@@ -211,7 +214,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       ES_LABK,    ES_Z,    ES_X,    ES_C,    ES_D,    ES_V,                        ES_K,    ES_H, ES_COMM,  ES_DOT, ES_MINS, KC_RBRC, 
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                KC_ESC, LT(_FUNCIONES, KC_ENT), LT(_NUMEROS, KC_TAB),   LT(_SIMBOLOS, KC_BSPC), LT(_NAVEGA, KC_SPC), KC_DEL  
+                KC_ESC, LT(_FUNCIONES, KC_ENT), LT(_NUMEROS, KC_TAB),   LT(_SIMBOLOS, KC_BSPC), LT(_NAVEGA, KC_SPC), LT(_MULTIMEDIA, KC_DEL)  
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -239,31 +242,44 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       //`--------------------------'  `--------------------------'
   ),
 
+  // [_SIMBOLOS] = LAYOUT_split_3x6_3(
+  // //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+  //     ES_DLR, ES_PERC, ES_DQUO, ES_IEXL, ES_SLSH, ES_IQUE,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, ES_IQUE,
+  // //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+  //     ES_CIRC, ES_TILD,   ES_AT, ES_HASH,  ES_PIPE, ES_EQL,                      XXXXXXX, KC_RSFT, KC_RCTL, KC_LALT, KC_RGUI, ES_GRV,
+  // //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+  //     ES_EURO, ES_AMPR, ES_BULT, ES_EXLM, ES_BSLS, ES_QUES,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, ES_NOT,
+  // //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+  //                                         KC_ESC, KC_ENT,  KC_TAB,     SIMBOLOS, XXXXXXX, XXXXXXX
+  //                                     //`--------------------------'  `--------------------------'
+  // ),
+
+
   [_SIMBOLOS] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      ES_DLR, ES_PERC, ES_DQUO, ES_IEXL, ES_SLSH, ES_IQUE,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, ES_IQUE,
+      ES_NOT,  ES_SLSH, ES_PERC,   ES_AT, ES_DQUO,  ES_DLR,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, ES_IQUE,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      ES_CIRC, ES_TILD,   ES_AT, ES_HASH,  ES_PIPE,  ES_EQL,                      XXXXXXX, KC_RSFT, KC_RCTL, KC_LALT, KC_RGUI, ES_GRV,
+      ES_CIRC, ES_PIPE, ES_AMPR, ES_EXLM, ES_QUES,  ES_EQL,                      XXXXXXX, KC_RSFT, KC_RCTL, KC_LALT, KC_RGUI, ES_GRV,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      ES_EURO, ES_AMPR, ES_BULT, ES_EXLM, ES_BSLS, ES_QUES,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, ES_NOT,
+      ES_BULT, ES_BSLS, ES_HASH, ES_IEXL, ES_IQUE, ES_EURO,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_ESC, KC_ENT,  KC_TAB,     SIMBOLOS, XXXXXXX, XXXXXXX
                                       //`--------------------------'  `--------------------------'
   ),
 
-/*
-  [_SIMBOLOS] = LAYOUT_split_3x6_3(
+
+  [_MULTIMEDIA] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, KC_VOLU, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, KC_VOLU, KC_BRIU,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX,   ES_AT, ES_HASH, ES_TILD, XXXXXXX,                      XXXXXXX, KC_RSFT, KC_RCTL, KC_LALT, KC_RGUI, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MUTE, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, KC_VOLD, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, KC_VOLD, KC_BRID,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_ESC, KC_ENT,  KC_TAB,     SIMBOLOS, XXXXXXX, XXXXXXX
+                                          KC_ESC, KC_ENT,  KC_TAB,     XXXXXXX, XXXXXXX, MULTIMEDIA
                                       //`--------------------------'  `--------------------------'
   ),
-*/
+
 
   [_NAVEGA] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
@@ -319,6 +335,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           layer_off(_NAVEGA);
         }
         return false;
+    case MULTIMEDIA:
+        if (record->event.pressed) {
+          layer_on(_MULTIMEDIA);
+        } else {
+          layer_off(_MULTIMEDIA);
+        }
+        return false;
     default:
       return true;
   }
@@ -338,6 +361,7 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 #define L_FUNCIONES 4
 #define L_SIMBOLOS 8
 #define L_NAVEGA 16
+#define L_MULTIMEDIA 32
 
 void oled_render_layer_state(void) {
     oled_write_P(PSTR("Layer: "), false);
@@ -356,6 +380,9 @@ void oled_render_layer_state(void) {
             break;
         case _SIMBOLOS:
             oled_write_ln_P(PSTR("Simbolos"), false);
+            break;
+        case _MULTIMEDIA:
+            oled_write_ln_P(PSTR("Multimedia"), false);
             break;
     }
 }
